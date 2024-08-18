@@ -1,4 +1,5 @@
 "use client"
+import { Analytics } from "@vercel/analytics/react"
 import React, { useRef } from 'react';
 import { Header } from "@/sections/Header";
 import { Hero } from "@/sections/Hero";
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <>
+      <Analytics/>
       <Header featuresRef={featuresRef} testRef={testRef} pricingRef={pricingRef} ctaRef={ctaRef}  />
       <Hero />
       <div ref={featuresRef}>
