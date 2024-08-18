@@ -9,6 +9,7 @@ interface HeaderProps {
   testRef: RefObject<HTMLDivElement>;
 }
 
+
 export const Header: React.FC<HeaderProps> = ({ featuresRef, testRef, pricingRef, ctaRef }) => {
   const scrollToSection = (ref: RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -64,3 +65,5 @@ export const Header: React.FC<HeaderProps> = ({ featuresRef, testRef, pricingRef
     </header>
   );
 };
+
+Header.displayName = 'Header';

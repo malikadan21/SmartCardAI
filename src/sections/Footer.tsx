@@ -58,3 +58,5 @@ export const Footer: React.FC<FooterProps> = ({ featuresRef, pricingRef, ctaRef 
     </footer>
   );
 };
+
+Footer.displayName = 'Footer';

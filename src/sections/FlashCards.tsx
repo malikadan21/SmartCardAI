@@ -94,3 +94,5 @@ export const FlashCards: React.FC = () => {
     </section>
   );
 };
+
+FlashCards.displayName = 'FlashCards';

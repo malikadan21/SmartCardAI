@@ -79,6 +79,8 @@ const PricingCard = ({ title, price, features, buttonText }: PricingPlan) => {
   );
 };
 
+PricingCard.displayName = 'PricingCard';
+
 export const Pricing = () => {
   return (
     <div className="bg-black text-white py-[72px] sm:py-24">

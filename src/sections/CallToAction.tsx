@@ -87,3 +87,5 @@ export const CallToAction = () => {
     </section>
   );
 };
+
+CallToAction.displayName = 'CallToAction';

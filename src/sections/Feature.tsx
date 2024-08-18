@@ -40,3 +40,5 @@ export const Feature= ({title,description}: {title:string,description:string}) =
     </div>
     );
 };
+
+Feature.displayName = 'Feature';

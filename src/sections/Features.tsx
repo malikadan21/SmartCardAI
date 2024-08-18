@@ -35,3 +35,5 @@ export const Features = React.forwardRef((props, ref) => {
     </div>
   );
 });
+
+Features.displayName = 'Features';
