@@ -8,6 +8,7 @@ import { Pricing } from "@/sections/Pricing";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
 import { FlashCards } from "@/sections/FlashCards";
+import test from "node:test";
 
 export default function Home() {
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -19,7 +20,7 @@ export default function Home() {
     <>
       <Analytics/>
       <Header featuresRef={featuresRef} testRef={testRef} pricingRef={pricingRef} ctaRef={ctaRef}  />
-      <Hero />
+      <Hero testRef={testRef} />
       <div ref={featuresRef}>
         <Features />
       </div>
@@ -27,12 +28,12 @@ export default function Home() {
         <FlashCards />
       </div>
       <div ref={pricingRef}>
-        <Pricing />
+        <Pricing featuresRef={featuresRef} testRef={testRef} pricingRef={pricingRef} ctaRef={ctaRef}  />
       </div>
       <div ref={ctaRef}>
         <CallToAction />
       </div>
-      <Footer featuresRef={featuresRef} pricingRef={pricingRef} ctaRef={ctaRef}/>
+      <Footer featuresRef={featuresRef} pricingRef={pricingRef} ctaRef={ctaRef} testRef={testRef}/>
     </>
   );
 }

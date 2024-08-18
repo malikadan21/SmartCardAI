@@ -1,53 +1,25 @@
+import React, { RefObject } from 'react';
+
 interface PricingPlan {
   title: string;
   price: string;
   features: string[];
   buttonText: string;
+  scrollToRef: RefObject<HTMLDivElement>; 
 }
 
-const pricing: PricingPlan[] = [
-  {
-    title: 'Free',
-    price: '0',
-    features: [
-      'Unlimited non-AI Flashcards',
-      'Conceptual Questions',
-      '1 Case Scenario',
-      'Basic Support',
-      'Community Access',
-    ],
-    buttonText: 'Create',
-  },
-  {
-    title: 'Mega Mind',
-    price: '1.99',
-    features: [
-      'Unlimited AI-Generated Flashcards',
-      'Upload PPT, PDF, and Text',
-      'Save and Download for Offline Use',
-      'Multiple Choice Questions',
-      'Detailed Performance Analytics',
-      'Priority Email Support',
-    ],
-    buttonText: 'Join Waitlist',
-  },
-  {
-    title: 'Super Learner',
-    price: '3.99',
-    features: [
-      'Unlimited AI-Generated Flashcards',
-      'Upload PPT, PDF, Youtube Videos and Text',
-      'Save and Download for Offline Use',
-      'Unlimited generations per Month',
-      'Advanced Analytics & Insights',
-      'Personalized Study Plans',
-      '24/7 Premium Support'
-    ],
-    buttonText: 'Join Waitlist',
-  },
-];
+interface PricingProps {
+  featuresRef: RefObject<HTMLDivElement>;
+  pricingRef: RefObject<HTMLDivElement>;
+  ctaRef: RefObject<HTMLDivElement>;
+  testRef: RefObject<HTMLDivElement>;
+}
 
-const PricingCard = ({ title, price, features, buttonText }: PricingPlan) => {
+const PricingCard = ({ title, price, features, buttonText, scrollToRef }: PricingPlan) => {
+  const handleButtonClick = () => {
+    scrollToRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="bg-black text-white border border-white/30 rounded-xl shadow-md p-8 flex flex-col justify-between h-[600px]">
       <div>
@@ -56,7 +28,14 @@ const PricingCard = ({ title, price, features, buttonText }: PricingPlan) => {
         <ul className="space-y-3 text-lg">
           {features.map((feature) => (
             <li key={feature} className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 mr-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-7 h-7 mr-3"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l3 3l3-3m-3 0l-3 3l3-3" />
               </svg>
               {feature}
@@ -65,23 +44,67 @@ const PricingCard = ({ title, price, features, buttonText }: PricingPlan) => {
         </ul>
       </div>
       <button
-                type="submit"
-                className="relative py-4 px-6 rounded-lg font-semibold text-lg bg-gradient-to-b from-[#190d2e] to-[#4a208c] shadow-[0px_0px_12px_#8c45ff]"
-              >
-                <div className="absolute inset-0">
-                  <div className="border border-white/20 absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
-                  <div className="rounded-lg border absolute inset-0 border-white/40 [mask-image:linear-gradient(to_top,black,transparent)]"></div>
-                  <div className="absolute inset-0 shadow-[0_0_10px_rgb(148,69,255,.7)_inset]"></div>
-                </div>
-                <span>{buttonText}</span>
+        type="button"
+        onClick={handleButtonClick}
+        className="relative py-4 px-6 rounded-lg font-semibold text-lg bg-gradient-to-b from-[#190d2e] to-[#4a208c] shadow-[0px_0px_12px_#8c45ff]"
+      >
+        <div className="absolute inset-0">
+          <div className="border border-white/20 absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
+          <div className="rounded-lg border absolute inset-0 border-white/40 [mask-image:linear-gradient(to_top,black,transparent)]"></div>
+          <div className="absolute inset-0 shadow-[0_0_10px_rgb(148,69,255,.7)_inset]"></div>
+        </div>
+        <span>{buttonText}</span>
       </button>
     </div>
   );
 };
 
-PricingCard.displayName = 'PricingCard';
+export const Pricing: React.FC<PricingProps> = ({ featuresRef, testRef, pricingRef, ctaRef }) => {
+  const pricing: PricingPlan[] = [
+    {
+      title: 'Free',
+      price: '0',
+      features: [
+        'Unlimited non-AI Flashcards',
+        'Conceptual Questions',
+        '1 Case Scenario',
+        'Basic Support',
+        'Community Access',
+      ],
+      buttonText: 'Create',
+      scrollToRef: testRef, // Pass the featuresRef here
+    },
+    {
+      title: 'Mega Mind',
+      price: '1.99',
+      features: [
+        'Unlimited AI-Generated Flashcards',
+        'Upload PPT, PDF, and Text',
+        'Save and Download for Offline Use',
+        'Multiple Choice Questions',
+        'Detailed Performance Analytics',
+        'Priority Email Support',
+      ],
+      buttonText: 'Join Waitlist',
+      scrollToRef: ctaRef, // Pass the ctaRef here
+    },
+    {
+      title: 'Super Learner',
+      price: '3.99',
+      features: [
+        'Unlimited AI-Generated Flashcards',
+        'Upload PPT, PDF, Youtube Videos and Text',
+        'Save and Download for Offline Use',
+        'Unlimited generations per Month',
+        'Advanced Analytics & Insights',
+        'Personalized Study Plans',
+        '24/7 Premium Support',
+      ],
+      buttonText: 'Join Waitlist',
+      scrollToRef: ctaRef, // Pass the testRef here
+    },
+  ];
 
-export const Pricing = () => {
   return (
     <div className="bg-black text-white py-[72px] sm:py-24">
       <div className="container mx-auto px-4">

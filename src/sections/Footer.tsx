@@ -8,9 +8,10 @@ interface FooterProps {
   featuresRef: RefObject<HTMLDivElement>;
   pricingRef: RefObject<HTMLDivElement>;
   ctaRef: RefObject<HTMLDivElement>;
+  testRef: RefObject<HTMLDivElement>;
 }
 
-export const Footer: React.FC<FooterProps> = ({ featuresRef, pricingRef, ctaRef }) => {
+export const Footer: React.FC<FooterProps> = ({ featuresRef, pricingRef, ctaRef,testRef }) => {
   const scrollToSection = (ref: RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -31,9 +32,12 @@ export const Footer: React.FC<FooterProps> = ({ featuresRef, pricingRef, ctaRef 
               >
                 Features
               </button>
-              <a href="#" className="text-white/70 hover:text-white text-xs md:text-sm transition">
+              <button
+                onClick={() => scrollToSection(testRef)}
+                className="text-white/70 hover:text-white text-xs md:text-sm transition"
+              >
                 Test
-              </a>
+              </button>
               <button
                 onClick={() => scrollToSection(pricingRef)}
                 className="text-white/70 hover:text-white text-xs md:text-sm transition"
