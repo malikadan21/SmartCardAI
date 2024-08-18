@@ -58,7 +58,7 @@ export const CallToAction = () => {
             <p className="text-center text-lg md:text-xl text-white/70 px-4 mt-5 tracking-light">
               Be the first to experience our innovative flashcard solutions—join the waitlist today and revolutionize your study routine!
             </p>
-            <form onSubmit={handleSubmit} className="flex justify-center mt-8 space-x-4">
+            <form onSubmit={handleSubmit} className="flex flex-col md:flex-row justify-center mt-8 space-y-4 md:space-y-0 md:space-x-4">
               <input
                 type="email"
                 placeholder="Enter your email"

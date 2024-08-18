@@ -72,7 +72,7 @@ export const Pricing: React.FC<PricingProps> = ({ featuresRef, testRef, pricingR
         'Community Access',
       ],
       buttonText: 'Create',
-      scrollToRef: testRef, // Pass the featuresRef here
+      scrollToRef: testRef, 
     },
     {
       title: 'Mega Mind',
@@ -86,7 +86,7 @@ export const Pricing: React.FC<PricingProps> = ({ featuresRef, testRef, pricingR
         'Priority Email Support',
       ],
       buttonText: 'Join Waitlist',
-      scrollToRef: ctaRef, // Pass the ctaRef here
+      scrollToRef: ctaRef, 
     },
     {
       title: 'Super Learner',
@@ -96,12 +96,11 @@ export const Pricing: React.FC<PricingProps> = ({ featuresRef, testRef, pricingR
         'Upload PPT, PDF, Youtube Videos and Text',
         'Save and Download for Offline Use',
         'Unlimited generations per Month',
-        'Advanced Analytics & Insights',
         'Personalized Study Plans',
         '24/7 Premium Support',
       ],
       buttonText: 'Join Waitlist',
-      scrollToRef: ctaRef, // Pass the testRef here
+      scrollToRef: ctaRef, 
     },
   ];
 
@@ -112,7 +111,7 @@ export const Pricing: React.FC<PricingProps> = ({ featuresRef, testRef, pricingR
         <p className="text-center mt-5 text-xl text-white/70">
           <span>Unlock the power of your study materials with our subscription plans. Transform your notes, textbooks, and presentations into tailored flashcards with ease. Our AI enhances your learning experience, making revision efficient and effective.</span>
         </p>
-        <div className="flex flex-col mt-7 sm:flex-row justify-center gap-8">
+        <div className="flex flex-col mt-7 md:flex-col lg:flex-row justify-center gap-8">
           {pricing.map((plan) => (
             <PricingCard key={plan.title} {...plan} />
           ))}
