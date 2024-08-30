@@ -28,6 +28,7 @@ export const TextComponent: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [flippedCardId, setFlippedCardId] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
 
   const MAX_CHAR_LIMIT = 4000;
 
@@ -53,6 +54,8 @@ export const TextComponent: React.FC = () => {
       setError('You can only add up to 4,000 characters for the free version.');
       return;
     }
+
+    setLoading(true); // Start loading
 
     try {
       const chatSession = model.startChat({
@@ -93,6 +96,8 @@ export const TextComponent: React.FC = () => {
     } catch (error) {
       console.error('Error generating flashcards:', error);
       setMessage('Error generating flashcards');
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -136,9 +141,18 @@ export const TextComponent: React.FC = () => {
             <div className="flex items-center justify-between">
               <button
                 type="submit"
-                className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#190d2e] to-[#4a208c] text-white font-semibold"
+                className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#190d2e] to-[#4a208c] text-white font-semibold disabled:opacity-50"
+                disabled={loading} // Disable button while loading
               >
-                Generate Flashcards
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <svg className="w-5 h-5 animate-spin text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12a8 8 0 01.44-2.74M12 4a8 8 0 000 16m-8-4a8 8 0 001.6-4.68M12 20a8 8 0 01-.44-8.74M12 20a8 8 0 001.6-4.68M12 4a8 8 0 01-.44 8.74M12 4a8 8 0 01-4.68 4.68" />
+                    </svg>
+                  </div>
+                ) : (
+                  'Generate Flashcards'
+                )}
               </button>
               <span className="text-white text-sm">
                 {text.length} characters / {MAX_CHAR_LIMIT} characters

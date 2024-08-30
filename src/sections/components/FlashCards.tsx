@@ -12,6 +12,7 @@ export const FlashCards: React.FC = () => {
   const [answer, setAnswer] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [flippedCardId, setFlippedCardId] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
 
   const addFlashCard = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,16 +22,22 @@ export const FlashCards: React.FC = () => {
       return;
     }
 
-    const newFlashCard: FlashCard = {
-      id: flashCards.length + 1,
-      question,
-      answer,
-    };
+    setLoading(true); // Start loading
 
-    setFlashCards((prevList) => [...prevList, newFlashCard]);
-    setQuestion('');
-    setAnswer('');
-    setMessage('Flashcard added successfully!');
+    // Simulate adding flashcard with delay
+    setTimeout(() => {
+      const newFlashCard: FlashCard = {
+        id: flashCards.length + 1,
+        question,
+        answer,
+      };
+
+      setFlashCards((prevList) => [...prevList, newFlashCard]);
+      setQuestion('');
+      setAnswer('');
+      setMessage('Flashcard added successfully!');
+      setLoading(false); // End loading
+    }, 1000); // Simulate a 1-second delay
   };
 
   const handleCardClick = (id: number) => {
@@ -60,9 +67,18 @@ export const FlashCards: React.FC = () => {
             />
             <button
               type="submit"
-              className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#190d2e] to-[#4a208c] text-white font-semibold"
+              className="py-2 px-4 rounded-lg bg-gradient-to-b from-[#190d2e] to-[#4a208c] text-white font-semibold disabled:opacity-50"
+              disabled={loading} // Disable button while loading
             >
-              Add Flashcard
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <svg className="w-5 h-5 animate-spin text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12a8 8 0 01.44-2.74M12 4a8 8 0 000 16m-8-4a8 8 0 001.6-4.68M12 20a8 8 0 01-.44-8.74M12 20a8 8 0 001.6-4.68M12 4a8 8 0 01-.44 8.74M12 4a8 8 0 01-4.68 4.68" />
+                  </svg>
+                </div>
+              ) : (
+                'Add Flashcard'
+              )}
             </button>
           </div>
           {message && <p className="text-center mt-4 text-green-500">{message}</p>}
