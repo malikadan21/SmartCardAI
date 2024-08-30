@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ featuresRef, pricingRef, ctaRef,
                 onClick={() => scrollToSection(testRef)}
                 className="text-white/70 hover:text-white text-xs md:text-sm transition"
               >
-                Test
+                FlashCards
               </button>
               <button
                 onClick={() => scrollToSection(pricingRef)}

@@ -7,8 +7,9 @@ import { Features } from "@/sections/Features";
 import { Pricing } from "@/sections/Pricing";
 import { CallToAction } from "@/sections/CallToAction";
 import { Footer } from "@/sections/Footer";
-import { FlashCards } from "@/sections/FlashCards";
-import test from "node:test";
+import { FlashCards } from "@/sections/components/FlashCards";
+import { OptionBar } from "@/sections/OptionBar";
+import ParentComponent from "@/sections/ParentComponent";
 
 export default function Home() {
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -25,7 +26,7 @@ export default function Home() {
         <Features />
       </div>
       <div ref={testRef}>
-        <FlashCards />
+        <ParentComponent />
       </div>
       <div ref={pricingRef}>
         <Pricing featuresRef={featuresRef} testRef={testRef} pricingRef={pricingRef} ctaRef={ctaRef}  />

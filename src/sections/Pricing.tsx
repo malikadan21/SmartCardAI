@@ -59,19 +59,20 @@ const PricingCard = ({ title, price, features, buttonText, scrollToRef }: Pricin
   );
 };
 
-export const Pricing: React.FC<PricingProps> = ({ featuresRef, testRef, pricingRef, ctaRef }) => {
+export const Pricing: React.FC<PricingProps> = ({ testRef, ctaRef }) => {
   const pricing: PricingPlan[] = [
     {
       title: 'Free',
       price: '0',
       features: [
         'Unlimited non-AI Flashcards',
+        'Upto 4,000 characters in Text',
         'Conceptual Questions',
         '1 Case Scenario',
         'Basic Support',
         'Community Access',
       ],
-      buttonText: 'Create',
+      buttonText: 'Create FlashCards',
       scrollToRef: testRef, 
     },
     {

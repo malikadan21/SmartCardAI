@@ -22,7 +22,7 @@ export const FlashCards: React.FC = () => {
     }
 
     const newFlashCard: FlashCard = {
-      id: flashCards.length + 1, // Simple ID generation
+      id: flashCards.length + 1,
       question,
       answer,
     };
@@ -38,19 +38,16 @@ export const FlashCards: React.FC = () => {
   };
 
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-20 md:py-24 flex flex-col items-center">
       <div className="container p-4">
-        <h2 className="text-center font-bold text-5xl sm:text-6xl tracking-tighter mb-8">
-          Flash Cards
-        </h2>
-        <form onSubmit={addFlashCard} className="mb-8 text-black">
+        <form onSubmit={addFlashCard} className="mb-8 text-white">
           <div className="flex flex-col space-y-4">
             <input
               type="text"
               placeholder="Enter question"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              className="py-2 px-4 rounded-lg border border-gray-300"
+              className="py-2 px-4 rounded-lg border border-gray-800 bg-black"
               required
             />
             <input
@@ -58,7 +55,7 @@ export const FlashCards: React.FC = () => {
               placeholder="Enter answer"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
-              className="py-2 px-4 rounded-lg border border-gray-300"
+              className="py-2 px-4 rounded-lg border border-gray-800 bg-black"
               required
             />
             <button
@@ -70,21 +67,21 @@ export const FlashCards: React.FC = () => {
           </div>
           {message && <p className="text-center mt-4 text-green-500">{message}</p>}
         </form>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 justify-center">
           {flashCards.map((card) => (
             <div
               key={card.id}
-              className="w-64 h-48 perspective cursor-pointer"
+              className="w-64 h-64 perspective cursor-pointer"
               onClick={() => handleCardClick(card.id)}
             >
               <div
                 className={`relative w-full h-full duration-500 transform-style-preserve-3d ${flippedCardId === card.id ? 'rotate-y-180' : ''}`}
               >
-                <div className="absolute w-full h-full bg-white border border-gray-300 rounded-lg flex items-center justify-center p-4 face front shadow-[-5px_-6px_20px_rgba(128,0,128,0.4)]">
-                  <p className="text-lg font-semibold text-gray-700">Question: {card.question}?</p>
+                <div className="absolute w-full h-full bg-black border border-gray-300 rounded-lg flex items-center justify-center p-4 face front shadow-[-5px_-6px_20px_rgba(128,0,128,0.4)]">
+                  <p className="text-lg font-semibold text-gray-100">Question: {card.question}?</p>
                 </div>
-                <div className="absolute w-full h-full bg-white border border-gray-300 rounded-lg flex items-center justify-center p-4 face back rotate-y-180 shadow-[0_4px_8px_rgba(128,0,128,0.4)]">
-                  <p className="text-lg text-gray-700">Answer: {card.answer}</p>
+                <div className="absolute w-full h-full bg-black border border-gray-300 rounded-lg flex items-center justify-center p-4 face back rotate-y-180 shadow-[0_4px_8px_rgba(128,0,128,0.4)]">
+                  <p className="text-lg text-gray-200">Answer: {card.answer}</p>
                 </div>
               </div>
             </div>

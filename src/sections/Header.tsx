@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ featuresRef, testRef, pricingRef
                 onClick={() => scrollToSection(testRef)} 
                 className="text-white/70 hover:text-white transition"
               >
-                Test
+               FlashCards
               </button>
               <button
                 onClick={() => scrollToSection(pricingRef)} 
